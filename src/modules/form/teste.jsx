@@ -64,7 +64,6 @@ const Form = () => {
       setEditName("");
       setEditPrice("");
       setEditType("");
-      setShowEditModal(false);
     } else {
       const newProduct = {
         name: name,
@@ -74,9 +73,6 @@ const Form = () => {
 
       const productsCollection = collection(firestore, "products");
       await addDoc(productsCollection, newProduct);
-      setName("");
-      setPrice("");
-      setType("");
     }
   };
 
@@ -90,36 +86,38 @@ const Form = () => {
     setEditName(product.name);
     setEditPrice(product.price);
     setEditType(product.type);
+  };
+
+  const openEditModal = (product) => {
+    setEditProductId(product.id);
+    setEditName(product.name);
+    setEditPrice(product.price);
+    setEditType(product.type);
     setShowEditModal(true);
   };
 
-  const closeEditModal = () => {
-    setEditProductId("");
-    setEditName("");
-    setEditPrice("");
-    setEditType("");
-    setShowEditModal(false);
-  };
 
   return (
     <div className="container">
       <h1>Adicionar produtos</h1>
       <div className="input">
         <label>Nome:</label>
-        <input type="text" value={name} onChange={handleNameChange} />
+        <input type="text" value={editName || name} onChange={handleNameChange} />
       </div>
       <div className="input">
         <label>Preço:</label>
-        <input type="text" value={price} onChange={handlePriceChange} />
+        <input type="text" value={editPrice || price} onChange={handlePriceChange} />
       </div>
       <div className="input">
         <label>Tipo:</label>
-        <input id="input3" type="text" value={type} onChange={handleTypeChange} />
+        <input id="input3" type="text" value={editType || type} onChange={handleTypeChange} />
       </div>
       <div className="input">
-        <button onClick={addProduct}>Adicionar Produto</button>
+        <button onClick={addProduct}>{editProductId ? "Atualizar Produto" : "Adicionar Produto"}</button>
       </div>
-      <div className="Container-modal"></div>
+      <div className="Container-modal">
+
+      </div>
 
       <ul>
         <h1>Lista de Produtos</h1>
@@ -143,8 +141,9 @@ const Form = () => {
                 <button onClick={() => deleteProduct(product.id)} id="excluir">
                   Excluir
                 </button>
-                <button onClick={() => loadProductDataForEdit(product)} id="editar">Editar</button>
+                <button onClick={() => openEditModal(product)} id="editar">Editar</button>
               </div>
+
             </li>
           ))}
         </div>
@@ -156,12 +155,12 @@ const Form = () => {
               <h2>Editar Produto</h2>
               <label>ID:</label>
               <div className="result">
-                {products.map((product) => (
-                  <li key={product.id} id="itemMain">
-                    <a id="item">{product.id}</a>
-                  </li>
-                ))}
-              </div>
+          {products.map((product) => (
+            <li key={product.id} id="itemMain">
+              <a id="item">{product.id}</a>
+            </li>
+          ))}
+        </div>
               <div className="input">
                 <label>Nome:</label>
                 <input type="text" value={editName} onChange={(event) => setEditName(event.target.value)} />
@@ -177,12 +176,15 @@ const Form = () => {
               <div className="input">
                 <button onClick={addProduct}>Atualizar Produto</button>
               </div>
-              <button onClick={closeEditModal}>Fechar</button>
+              <button onClick={() => setShowEditModal(false)} >Fechar</button>
             </div>
           </div>
         )}
+
       </div>
     </div>
+
+
   );
 };
 
