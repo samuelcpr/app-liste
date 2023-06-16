@@ -54,6 +54,10 @@ const Form = () => {
 
   const addProduct = async () => {
     if (editProductId) {
+      if (editProductId === "") {
+        return; // Não permite atualizar se o ID estiver vazio
+      }
+
       const productDocRef = doc(firestore, "products", editProductId);
       await updateDoc(productDocRef, {
         name: editName,
@@ -149,18 +153,16 @@ const Form = () => {
           ))}
         </div>
       </ul>
+
       <div className="container-modal">
         {showEditModal && (
           <div className="modal">
             <div className="modal-content">
               <h2>Editar Produto</h2>
-              <label>ID:</label>
-              <div className="result">
-                {products.map((product) => (
-                  <li key={product.id} id="itemMain">
-                    <a id="item">{product.id}</a>
-                  </li>
-                ))}
+
+              <div className="input">
+                <label>ID:</label>
+                <input type="text" value={editProductId} onChange={(event) => setEditProductId(event.target.value)} />
               </div>
               <div className="input">
                 <label>Nome:</label>
