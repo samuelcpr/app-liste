@@ -6,13 +6,13 @@ import { getFirestore, collection, addDoc, doc, onSnapshot, deleteDoc } from "fi
 
 
 const firebaseConfig = {
-    apiKey: "AIzaSyAdgsvIjt5eU_O80r4yvXEbEEONVBEVGas",
-    authDomain: "crud-produtos-5972b.firebaseapp.com",
-    projectId: "crud-produtos-5972b",
-    storageBucket: "crud-produtos-5972b.appspot.com",
-    messagingSenderId: "650147894625",
-    appId: "1:650147894625:web:b68d6780141c62a2f86120",
-    measurementId: "G-946D1HQFBM"
+  apiKey: "AIzaSyAdgsvIjt5eU_O80r4yvXEbEEONVBEVGas",
+  authDomain: "crud-produtos-5972b.firebaseapp.com",
+  projectId: "crud-produtos-5972b",
+  storageBucket: "crud-produtos-5972b.appspot.com",
+  messagingSenderId: "650147894625",
+  appId: "1:650147894625:web:b68d6780141c62a2f86120",
+  measurementId: "G-946D1HQFBM"
 };
 
 const app = initializeApp(firebaseConfig);
@@ -82,23 +82,29 @@ const App = () => {
         <input id="input3" type="text" value={type} onChange={handleTypeChange} />
       </div>
       <div className="input" >
-      <button onClick={addProduct}>Adicionar Produto</button>
+        <button onClick={addProduct}>Adicionar Produto</button>
       </div>
       <ul>
-      <h1>lista</h1>
+        {/* titulo da exibição */}
+        <h1>lista</h1>
+        <div className="infoMain">
+          <div id="info"><p id="p1">Nome</p> <p id="p2">Preço</p> <p id="p3">Tipo</p></div>
+        </div>
         <div className="result">
-
-            
-        {products.map((product) => (
-          <li key={product.id}>
-            <a href="">
-            {product.name} 
-            </a>
-            <a></a>
-            {product.price} - {product.type}
-            <button onClick={() => deleteProduct(product.id)} id="excluir">Excluir</button>
-          </li>
-        ))}
+          {products.map((product) => (
+            <li key={product.id} id="itemMain">
+              <a id="item">
+                {product.name}
+              </a>
+              <a id="item2">
+                {product.price}
+              </a>
+              <a id="item3">{product.type}</a>
+              <div className="excluirMain">
+              <button onClick={() => deleteProduct(product.id)} id="excluir">Excluir</button>
+              </div>
+            </li>
+          ))}
         </div>
       </ul>
     </div>
