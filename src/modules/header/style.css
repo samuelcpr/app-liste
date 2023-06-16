@@ -29,8 +29,9 @@
     color: #61dafb;
     text-decoration: none;
     border: solid 1px;
-    padding: 1% 5%;
-    border-radius: 15px;
+    padding: 8px 2%;
+    border-radius: 5px;
+    font-size: 18px;
 }
 
 .App-link:hover {
@@ -46,3 +47,61 @@
         transform: rotate(360deg);
     }
 }
+
+.App {
+    text-align: center;
+  }
+  
+  .App-header {
+    background-color: #282c34;
+    padding: 20px;
+    color: white;
+  }
+  
+  .App-logo {
+    height: 150px;
+    width: 150px;
+  }
+  
+  .App p {
+    margin-top: 20px;
+  }
+  
+  .App-link {
+    color: #61dafb;
+    margin-top: 20px;
+  }
+  
+  @media (max-width: 768px) {
+    .App-logo {
+      height: 60px;
+      width: 60px;
+      font-size: 12px;
+    }
+  
+    .App p {
+      font-size: 14px;
+      
+    }
+    .App a {
+        font-size: 14px;
+        
+      }
+  }
+  
+  @media (max-width: 480px) {
+    .App-logo {
+      height: 40px;
+      width: 40px;
+    }
+  
+    .App p {
+      font-size: 12px;
+    }
+    .App a {
+        font-size: 12px;
+        
+      }
+  }
+  
+  
