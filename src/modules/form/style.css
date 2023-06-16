@@ -1,0 +1,74 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+h1 {
+    text-align: center;
+}
+
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table th,
+table td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.result {
+    display: flex;
+    justify-content: center;
+}
+
+button {
+    padding: 5px 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+.error {
+    color: red;
+}
+
+.container {
+    display: block;
+    justify-content: center;
+
+
+}
+
+.input {
+    display: flex;
+    justify-content: center;
+
+}
+
+input {
+    width: 20%;
+    height: 25px;
+    margin-bottom: 1%;
+    margin-left:2px;
+}
+
+label{
+    display: block;
+}
+
+#excluir{
+    margin-left:10px;
+}
+
+#input3{
+    margin-left:10px;
+}
