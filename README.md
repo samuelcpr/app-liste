@@ -1,7 +1,7 @@
 # Projeto lista de produtos
 
 
-![Layout do projeto](./public/img/Captura%20de%20tela%20de%202023-06-16%2007-54-09.png)
+![Layout do projeto](./public/img/img.png)
 
 
 
