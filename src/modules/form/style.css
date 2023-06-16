@@ -130,4 +130,84 @@
       flex: none;
     }
   }
+
+
+  .container {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  h1 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .input {
+    margin-bottom: 10px;
+  }
+  
+  .input label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .input input {
+    width: 100%;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+  }
+  
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .infoMain {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    background-color: #eee;
+    padding: 10px;
+  }
+  
+  #info {
+    display: flex;
+    flex-basis: 100%;
+  }
+  
+  #info p {
+    flex-basis: 33%;
+  }
+  
+  .result {
+    margin-top: 10px;
+  }
+  
+  #itemMain {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  #item {
+    flex-basis: 33%;
+    margin-right: 10px;
+  }
+  
+  #item2 {
+    flex-basis: 33%;
+    margin-right: 10px;
+  }
+  
+  #item3 {
+    flex-basis: 33%;
+  }
+  
+  .excluirMain {
+    margin-left: auto;
+  }
+  
   
