@@ -99,6 +99,7 @@ button {
 
 .excluirMain {
   margin-left: auto;
+  display: flex;
 }
 
 /* Estilos responsivos */
@@ -131,3 +132,13 @@ button {
   }
 }
 
+#editar{
+  margin-left: 2%;
+  border-radius: 5px;
+}
+
+#excluir{
+  margin-right: 3% 2% 0 2%;
+  border-radius: 5px;
+  background-color: red;
+}
