@@ -17,7 +17,7 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const firestore = getFirestore(app);
-const analytics = getAnalytics(app);
+// const analytics = getAnalytics(app);
 
 const App = () => {
   const [name, setName] = useState("");
