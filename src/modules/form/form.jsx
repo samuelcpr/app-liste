@@ -99,6 +99,7 @@ const Form = () => {
 
   return (
     <div className="container">
+      <div className="container-addList">
       <h1>Adicionar produtos</h1>
       <div className="input">
         <label>Nome:</label>
@@ -115,10 +116,10 @@ const Form = () => {
       <div className="input">
         <button onClick={addProduct}>{editProductId ? "Atualizar Produto" : "Adicionar Produto"}</button>
       </div>
-      <div className="Container-modal">
 
       </div>
-
+      
+      <div className="container-result">
       <ul>
         <h1>Lista de Produtos</h1>
         <div className="infoMain">
@@ -171,6 +172,7 @@ const Form = () => {
           </div>
         )}
 
+      </div>
       </div>
     </div>
 
