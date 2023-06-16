@@ -19,7 +19,7 @@ const app = initializeApp(firebaseConfig);
 const firestore = getFirestore(app);
 // const analytics = getAnalytics(app);
 
-const App = () => {
+const Form = () => {
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
   const [type, setType] = useState("");
@@ -111,4 +111,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default Form;
