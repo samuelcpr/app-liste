@@ -1,3 +1,17 @@
+# Projeto lista de produtos
+
+
+![Layout do projeto](./public/img/Captura%20de%20tela%20de%202023-06-16%2007-54-09.png)
+
+
+
+
+# Sobre o projeto
+
+Este projeto foi desenvolvido com o objetivo de criar uma lista de produtos, utilizando o formato CRUD (Create, Read, Update, Delete). Com ele, é possível adicionar novos produtos à lista, visualizar os valores armazenados no banco de dados e realizar exclusões quando necessário. O banco de dados utilizado é o Firestore do Firebase. Para implementar esse projeto, foram utilizadas as tecnologias ReactJS e Firebase, que proporcionam uma experiência dinâmica e interativa ao usuário. Essas tecnologias permitem uma integração eficiente entre a interface do usuário e o banco de dados, tornando a criação, listagem e exclusão de produtos uma tarefa simplificada e eficaz.
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
