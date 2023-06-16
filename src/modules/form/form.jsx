@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
 import "./style.css";
-import { getFirestore, collection, addDoc, doc, onSnapshot, deleteDoc } from "firebase/firestore";
-
+import { initializeApp } from "firebase/app";
+import { getFirestore, collection, addDoc, doc, onSnapshot, deleteDoc, updateDoc } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAdgsvIjt5eU_O80r4yvXEbEEONVBEVGas",
@@ -17,13 +15,17 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const firestore = getFirestore(app);
-// const analytics = getAnalytics(app);
 
 const Form = () => {
+  const [showEditModal, setShowEditModal] = useState(false);
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
   const [type, setType] = useState("");
   const [products, setProducts] = useState([]);
+  const [editProductId, setEditProductId] = useState("");
+  const [editName, setEditName] = useState("");
+  const [editPrice, setEditPrice] = useState("");
+  const [editType, setEditType] = useState("");
 
   useEffect(() => {
     const productsCollection = collection(firestore, "products");
@@ -51,14 +53,27 @@ const Form = () => {
   };
 
   const addProduct = async () => {
-    const newProduct = {
-      name: name,
-      price: price,
-      type: type
-    };
+    if (editProductId) {
+      const productDocRef = doc(firestore, "products", editProductId);
+      await updateDoc(productDocRef, {
+        name: editName,
+        price: editPrice,
+        type: editType
+      });
+      setEditProductId("");
+      setEditName("");
+      setEditPrice("");
+      setEditType("");
+    } else {
+      const newProduct = {
+        name: name,
+        price: price,
+        type: type
+      };
 
-    const productsCollection = collection(firestore, "products");
-    await addDoc(productsCollection, newProduct);
+      const productsCollection = collection(firestore, "products");
+      await addDoc(productsCollection, newProduct);
+    }
   };
 
   const deleteProduct = async (id) => {
@@ -66,48 +81,100 @@ const Form = () => {
     await deleteDoc(productDocRef);
   };
 
+  const loadProductDataForEdit = (product) => {
+    setEditProductId(product.id);
+    setEditName(product.name);
+    setEditPrice(product.price);
+    setEditType(product.type);
+  };
+
+  const openEditModal = (product) => {
+    setEditProductId(product.id);
+    setEditName(product.name);
+    setEditPrice(product.price);
+    setEditType(product.type);
+    setShowEditModal(true);
+  };
+
+
   return (
     <div className="container">
       <h1>Adicionar produtos</h1>
       <div className="input">
         <label>Nome:</label>
-        <input type="text" value={name} onChange={handleNameChange} />
+        <input type="text" value={editName || name} onChange={handleNameChange} />
       </div>
       <div className="input">
         <label>Preço:</label>
-        <input type="text" value={price} onChange={handlePriceChange} />
+        <input type="text" value={editPrice || price} onChange={handlePriceChange} />
       </div>
       <div className="input">
         <label>Tipo:</label>
-        <input id="input3" type="text" value={type} onChange={handleTypeChange} />
+        <input id="input3" type="text" value={editType || type} onChange={handleTypeChange} />
       </div>
-      <div className="input" >
-        <button onClick={addProduct}>Adicionar Produto</button>
+      <div className="input">
+        <button onClick={addProduct}>{editProductId ? "Atualizar Produto" : "Adicionar Produto"}</button>
       </div>
+      <div className="Container-modal">
+
+      </div>
+
       <ul>
-        {/* titulo da exibição */}
-        <h1>lista</h1>
+        <h1>Lista de Produtos</h1>
         <div className="infoMain">
-          <div id="info"><p id="p1">Nome</p> <p id="p2">Preço</p> <p id="p3">Tipo</p></div>
+          <div id="info">
+            <p id="p1">Nome</p>
+            <p id="p2">Preço</p>
+            <p id="p3">Tipo</p>
+          </div>
         </div>
+
         <div className="result">
           {products.map((product) => (
             <li key={product.id} id="itemMain">
-              <a id="item">
-                {product.name}
-              </a>
-              <a id="item2">
-                {product.price}
-              </a>
+              <a id="item">{product.name}</a>
+              <a id="item2">{product.price}</a>
               <a id="item3">{product.type}</a>
               <div className="excluirMain">
-              <button onClick={() => deleteProduct(product.id)} id="excluir">Excluir</button>
+                <button onClick={() => deleteProduct(product.id)} id="excluir">
+                  Excluir
+                </button>
+                <button onClick={() => openEditModal(product)} id="editar">Editar</button>
               </div>
+
             </li>
           ))}
         </div>
       </ul>
+      <div className="container-modal">
+        {showEditModal && (
+          <div className="modal">
+            <div className="modal-content">
+              <h2>Editar Produto</h2>
+              <div className="input">
+                <label>Nome:</label>
+                <input type="text" value={editName} onChange={(event) => setEditName(event.target.value)} />
+              </div>
+              <div className="input">
+                <label>Preço:</label>
+                <input type="text" value={editPrice} onChange={(event) => setEditPrice(event.target.value)} />
+              </div>
+              <div className="input">
+                <label>Tipo:</label>
+                <input type="text" value={editType} onChange={(event) => setEditType(event.target.value)} />
+              </div>
+              <div className="input">
+                <button onClick={addProduct}>Atualizar Produto</button>
+              </div>
+              <button onClick={() => setShowEditModal(false)}>Fechar</button>
+            </div>
+          </div>
+        )}
+
+      </div>
     </div>
+
+
   );
 };
 
