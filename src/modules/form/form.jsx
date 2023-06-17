@@ -18,6 +18,7 @@ const firestore = getFirestore(app);
 
 const Form = () => {
   const [showEditModal, setShowEditModal] = useState(false);
+  const [showBottomModal, setShowBottomModal] = useState(false);
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
   const [type, setType] = useState("");
@@ -69,6 +70,7 @@ const Form = () => {
       setEditPrice("");
       setEditType("");
       setShowEditModal(false);
+      setShowBottomModal(false);
     } else {
       const newProduct = {
         name: name,
@@ -95,6 +97,12 @@ const Form = () => {
     setEditPrice(product.price);
     setEditType(product.type);
     setShowEditModal(true);
+    setShowBottomModal(false);
+  };
+
+  const loadProductDataForPrice = () => {
+    setShowEditModal(false);
+    setShowBottomModal(true);
   };
 
   const closeEditModal = () => {
@@ -103,6 +111,14 @@ const Form = () => {
     setEditPrice("");
     setEditType("");
     setShowEditModal(false);
+  };
+
+  const calcularTotal = () => {
+    let total = 0;
+    products.forEach((product) => {
+      total += parseFloat(product.price);
+    });
+    return total;
   };
 
   return (
@@ -123,66 +139,86 @@ const Form = () => {
       <div className="input">
         <button onClick={addProduct}>Adicionar Produto</button>
       </div>
-      <div className="Container-modal"></div>
+      
 
-      <ul>
-        <h1>Lista de Produtos</h1>
-        <div className="infoMain">
-          <div id="info">
-            <p id="p0">id</p>
-            <p id="p1">Nome</p>
-            <p id="p2">Preço</p>
-            <p id="p3">Tipo</p>
-          </div>
-        </div>
 
-        <div className="result">
-          {products.map((product) => (
-            <li key={product.id} id="itemMain">
-              <a id="item">{product.id}</a>
-              <a id="item">{product.name}</a>
-              <a id="item2">{product.price}</a>
-              <a id="item3">{product.type}</a>
-              <div className="excluirMain">
-                <button onClick={() => deleteProduct(product.id)} id="excluir">
-                  Excluir
-                </button>
-                <button onClick={() => loadProductDataForEdit(product)} id="editar">Editar</button>
+      <div className="Lista">
+        <div className="container-modal">
+          {showEditModal && (
+            <div className="modal">
+              <div className="modal-content">
+                <h2>Editar Lista</h2>
+                <div className="valorTotal">
+                  <button onClick={closeEditModal}>Fechar</button>
+                </div>
+                <div className="input">
+                  <label>ID:</label>
+                  <input type="text" value={editProductId} onChange={(event) => setEditProductId(event.target.value)} />
+                </div>
+                <div className="input">
+                  <label>Nome:</label>
+                  <input type="text" value={editName} onChange={(event) => setEditName(event.target.value)} />
+                </div>
+                <div className="input">
+                  <label>Preço:</label>
+                  <input type="text" value={editPrice} onChange={(event) => setEditPrice(event.target.value)} />
+                </div>
+                <div className="input">
+                  <label>Tipo:</label>
+                  <input type="text" value={editType} onChange={(event) => setEditType(event.target.value)} />
+                </div>
+                <div className="input">
+                  <button onClick={addProduct}>Atualizar Produto</button>
+                </div>
+
               </div>
-            </li>
-          ))}
-        </div>
-      </ul>
+            </div>
+          )}
+          <ul>
+            <h1>Lista de Produtos</h1>
+            <div className="infoMain">
+              <div id="info">
+                <p id="p0">id</p>
+                <p id="p1">Nome</p>
+                <p id="p2">Preço</p>
+                <p id="p3">Tipo</p>
+              </div>
+            </div>
 
-      <div className="container-modal">
-        {showEditModal && (
+            <div className="result">
+              {products.map((product) => (
+                <li key={product.id} id="itemMain">
+                  <a id="item">{product.id}</a>
+                  <a id="item">{product.name}</a>
+                  <a id="item2">{product.price}</a>
+                  <a id="item3">{product.type}</a>
+                  <div className="excluirMain">
+                    <button onClick={() => deleteProduct(product.id)} id="excluir">
+                      Excluir
+                    </button>
+                    <button onClick={() => loadProductDataForEdit(product)} id="editar">Editar</button>
+                  </div>
+                </li>
+              ))}
+            </div>
+          </ul>
+
+        </div>
+
+
+
+        {showBottomModal && (
           <div className="modal">
             <div className="modal-content">
-              <h2>Editar Produto</h2>
-
-              <div className="input">
-                <label>ID:</label>
-                <input type="text" value={editProductId} onChange={(event) => setEditProductId(event.target.value)} />
-              </div>
-              <div className="input">
-                <label>Nome:</label>
-                <input type="text" value={editName} onChange={(event) => setEditName(event.target.value)} />
-              </div>
-              <div className="input">
-                <label>Preço:</label>
-                <input type="text" value={editPrice} onChange={(event) => setEditPrice(event.target.value)} />
-              </div>
-              <div className="input">
-                <label>Tipo:</label>
-                <input type="text" value={editType} onChange={(event) => setEditType(event.target.value)} />
-              </div>
-              <div className="input">
-                <button onClick={addProduct}>Atualizar Produto</button>
-              </div>
-              <button onClick={closeEditModal}>Fechar</button>
+              <h2>Valor Total</h2>
+              <p>Total: R${calcularTotal()}</p>
+              <button onClick={() => setShowBottomModal(false)} id="fecharTotal">Fechar</button>
             </div>
           </div>
         )}
+      </div>
+      <div className="valorTotal">
+        <button onClick={loadProductDataForPrice} id="botaoTotal">Valor Total</button>
       </div>
     </div>
   );
