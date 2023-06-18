@@ -10,11 +10,13 @@ body {
 }
 
 .container {
-  width: 100%;
+  width: 102%;
   max-width: 800px;
   margin: 0 auto;
-  padding: 20px;
-  
+  padding: 1% 2%;
+  border: solid 1px;
+  border-radius: 5px;
+  margin-top: 8%;
 }
 
 h1 {
@@ -35,6 +37,7 @@ ul {
 .input label {
   display: block;
   margin-bottom: 5px;
+
 }
 
 .input input {
@@ -42,6 +45,8 @@ ul {
   padding: 8px;
   border-radius: 4px;
   border: 1px solid #ccc;
+  border: solid 1px;
+  border-color: black;
 }
 
 button {
@@ -74,9 +79,11 @@ button {
 
 
 
+
 .result {
   margin-top: 10px;
   margin-bottom: 5%;
+  
 }
 
 #itemMain {
@@ -85,11 +92,11 @@ button {
   margin-bottom: 10px;
   border: solid 1px;
   border-radius: 5px;
-  padding: 5px 5px 5px 2%;
+  padding: 5px 5px 5px 5px;
 }
 
 #item{
-  flex-basis: 33%;
+  flex-basis: 5%;
   margin-right: 3%;
 }
 #item2{
@@ -177,4 +184,8 @@ button {
 
 .modal-content{
   position: static;
+}
+
+.mainContainer {
+  padding: 0 23%;
 }
