@@ -1,227 +1,74 @@
 import React, { useState, useEffect } from "react";
-import "./style.css";
 import { initializeApp } from "firebase/app";
 import { getFirestore, collection, addDoc, doc, onSnapshot, deleteDoc, updateDoc } from "firebase/firestore";
+import ProductForm from "../../components/AddProd/AddProd";
+import ValorTotal from "../../components/TotalPreco/TotalPreco";
+import LoadProductDataForEdit from "../../components/atualizandoProd/atualizeProd";
+import FirebaseConfig from "../../server/Api/api";
 
-const firebaseConfig = {
-  apiKey: "AIzaSyAdgsvIjt5eU_O80r4yvXEbEEONVBEVGas",
-  authDomain: "crud-produtos-5972b.firebaseapp.com",
-  projectId: "crud-produtos-5972b",
-  storageBucket: "crud-produtos-5972b.appspot.com",
-  messagingSenderId: "650147894625",
-  appId: "1:650147894625:web:b68d6780141c62a2f86120",
-  measurementId: "G-946D1HQFBM"
-};
+const firebaseConfig = FirebaseConfig;
 
 const app = initializeApp(firebaseConfig);
-const firestore = getFirestore(app);
+export const firestore = getFirestore(app);
 
-const Form = () => {
-  const [showEditModal, setShowEditModal] = useState(false);
-  const [showBottomModal, setShowBottomModal] = useState(false);
-  const [name, setName] = useState("");
-  const [price, setPrice] = useState("");
-  const [type, setType] = useState("");
+const App = () => {
   const [products, setProducts] = useState([]);
-  const [editProductId, setEditProductId] = useState("");
-  const [editName, setEditName] = useState("");
-  const [editPrice, setEditPrice] = useState("");
-  const [editType, setEditType] = useState("");
+  const [showBottomModal, setShowBottomModal] = useState(false);
 
   useEffect(() => {
-    const productsCollection = collection(firestore, "products");
-    const unsubscribe = onSnapshot(productsCollection, (snapshot) => {
-      const productsData = snapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data()
-      }));
-      setProducts(productsData);
+    const unsubscribe = onSnapshot(collection(firestore, "products"), (snapshot) => {
+      const updatedProducts = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+      setProducts(updatedProducts);
     });
 
     return () => unsubscribe();
   }, []);
 
-  const handleNameChange = (event) => {
-    setName(event.target.value);
-  };
-
-  const handlePriceChange = (event) => {
-    setPrice(event.target.value);
-  };
-
-  const handleTypeChange = (event) => {
-    setType(event.target.value);
-  };
-
-  const addProduct = async () => {
-    if (editProductId) {
-      if (editProductId === "") {
-        return; // Não permite atualizar se o ID estiver vazio
-      }
-
-      const productDocRef = doc(firestore, "products", editProductId);
-      await updateDoc(productDocRef, {
-        name: editName,
-        price: editPrice,
-        type: editType
-      });
-      setEditProductId("");
-      setEditName("");
-      setEditPrice("");
-      setEditType("");
-      setShowEditModal(false);
-      setShowBottomModal(false);
-    } else {
-      const newProduct = {
-        name: name,
-        price: price,
-        type: type
-      };
-
-      const productsCollection = collection(firestore, "products");
-      await addDoc(productsCollection, newProduct);
-      setName("");
-      setPrice("");
-      setType("");
+  const addProduct = async (product) => {
+    try {
+      const docRef = await addDoc(collection(firestore, "products"), product);
+      const newProduct = { id: docRef.id, ...product };
+      setProducts([...products, newProduct]);
+    } catch (error) {
+      console.error("Erro ao adicionar produto:", error);
     }
   };
 
   const deleteProduct = async (id) => {
-    const productDocRef = doc(firestore, "products", id);
-    await deleteDoc(productDocRef);
+    try {
+      await deleteDoc(doc(firestore, "products", id));
+      setProducts(products.filter((product) => product.id !== id));
+    } catch (error) {
+      console.error("Erro ao excluir produto:", error);
+    }
   };
 
-  const loadProductDataForEdit = (product) => {
-    setEditProductId(product.id);
-    setEditName(product.name);
-    setEditPrice(product.price);
-    setEditType(product.type);
-    setShowEditModal(true);
-    setShowBottomModal(false);
-  };
-
-  const loadProductDataForPrice = () => {
-    setShowEditModal(false);
-    setShowBottomModal(true);
-  };
-
-  const closeEditModal = () => {
-    setEditProductId("");
-    setEditName("");
-    setEditPrice("");
-    setEditType("");
-    setShowEditModal(false);
-  };
-
-  const calcularTotal = () => {
-    let total = 0;
-    products.forEach((product) => {
-      total += parseFloat(product.price);
-    });
-    return total;
+  const editProduct = async (product) => {
+    try {
+      const { id, ...productData } = product;
+      await updateDoc(doc(firestore, "products", id), productData);
+    } catch (error) {
+      console.error("Erro ao atualizar produto:", error);
+    }
   };
 
   return (
-    <div className="container">
-      <h1>Adicionar produtos</h1>
-      <div className="input">
-        <label>Nome:</label>
-        <input type="text" value={name} onChange={handleNameChange} />
-      </div>
-      <div className="input">
-        <label>Preço:</label>
-        <input type="text" value={price} onChange={handlePriceChange} />
-      </div>
-      <div className="input">
-        <label>Tipo:</label>
-        <input id="input3" type="text" value={type} onChange={handleTypeChange} />
-      </div>
-      <div className="input">
-        <button onClick={addProduct}>Adicionar Produto</button>
-      </div>
-      
+    <div className="mainContainer">
+      <ProductForm addProduct={addProduct} />
 
-
-      <div className="Lista">
-        <div className="container-modal">
-          {showEditModal && (
-            <div className="modal">
-              <div className="modal-content">
-                <h2>Editar Lista</h2>
-                <div className="valorTotal">
-                  <button onClick={closeEditModal}>Fechar</button>
-                </div>
-                <div className="input">
-                  <label>ID:</label>
-                  <input type="text" value={editProductId} onChange={(event) => setEditProductId(event.target.value)} />
-                </div>
-                <div className="input">
-                  <label>Nome:</label>
-                  <input type="text" value={editName} onChange={(event) => setEditName(event.target.value)} />
-                </div>
-                <div className="input">
-                  <label>Preço:</label>
-                  <input type="text" value={editPrice} onChange={(event) => setEditPrice(event.target.value)} />
-                </div>
-                <div className="input">
-                  <label>Tipo:</label>
-                  <input type="text" value={editType} onChange={(event) => setEditType(event.target.value)} />
-                </div>
-                <div className="input">
-                  <button onClick={addProduct}>Atualizar Produto</button>
-                </div>
-
-              </div>
-            </div>
-          )}
-          <ul>
-            <h1>Lista de Produtos</h1>
-            <div className="infoMain">
-              <div id="info">
-                <p id="p0">id</p>
-                <p id="p1">Nome</p>
-                <p id="p2">Preço</p>
-                <p id="p3">Tipo</p>
-              </div>
-            </div>
-
-            <div className="result">
-              {products.map((product) => (
-                <li key={product.id} id="itemMain">
-                  <a id="item">{product.id}</a>
-                  <a id="item">{product.name}</a>
-                  <a id="item2">{product.price}</a>
-                  <a id="item3">{product.type}</a>
-                  <div className="excluirMain">
-                    <button onClick={() => deleteProduct(product.id)} id="excluir">
-                      Excluir
-                    </button>
-                    <button onClick={() => loadProductDataForEdit(product)} id="editar">Editar</button>
-                  </div>
-                </li>
-              ))}
-            </div>
-          </ul>
-
-        </div>
-
-
-
-        {showBottomModal && (
-          <div className="modal">
-            <div className="modal-content">
-              <h2>Valor Total</h2>
-              <p>Total: R${calcularTotal()}</p>
-              <button onClick={() => setShowBottomModal(false)} id="fecharTotal">Fechar</button>
-            </div>
-          </div>
-        )}
-      </div>
-      <div className="valorTotal">
-        <button onClick={loadProductDataForPrice} id="botaoTotal">Valor Total</button>
-      </div>
+      {/* Remova a linha <EditLoad /> do seu código */}
+      <LoadProductDataForEdit
+        products={products}
+        deleteProduct={deleteProduct}
+        editProduct={editProduct}
+      />
+      <ValorTotal
+        products={products}
+        showBottomModal={showBottomModal}
+        setShowBottomModal={setShowBottomModal}
+      />
     </div>
   );
 };
 
-export default Form;
+export default App;
