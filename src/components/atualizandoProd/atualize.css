@@ -1,0 +1,22 @@
+#itemx{
+    margin: 1%;
+}
+
+#itemx1{
+    font-size: 12px;
+    margin-right: 1%;
+    background-color: green;
+}
+
+#itemx2{
+    font-size: 12px;
+}
+
+.containerBut{
+    padding: 0 1%;
+    display: flex;
+}
+
+.result {
+    width: 102%;
+}
