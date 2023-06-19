@@ -1,5 +1,5 @@
 import React from "react";
-import logo from '../../logo.svg';
+import logo from '../../img/online store.png';
 import './style.css';
 
 function Header() {
@@ -7,9 +7,7 @@ function Header() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Projeto desenvolvido em react.js
-        </p>
+        
         <a
           className="App-link"
           href="https://github.com/samuelcpr/app-liste"
