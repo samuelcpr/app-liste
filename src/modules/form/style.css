@@ -143,10 +143,22 @@ button {
     width: 0; 
   }
 
+  #fecharTotal{
+    height: 30px;
+   width: auto;
+   font-size: 8px;
+  }
+
+  .valorTotal{
+    margin-top: 5%;
+   font-size: 8px;
+  }
+
   #excluir{
     height: 30px;
    width: auto;
    font-size: 8px;
+
 
   }
   #editar{
