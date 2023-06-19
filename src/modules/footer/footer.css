@@ -6,15 +6,25 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    
 
 }
 
 #img1{
     height: 18px;
     width: auto;
-    padding-right: 1%;
+    padding-right: 5px;
+    
 }
 
 #name-footer {
     color: #ffff;
+}
+@media (max-width: 480px) {
+    #img1{
+        height: 18px;
+        width: auto;
+        padding-right: 5px;
+        margin: 2% 0;
+    }
 }
