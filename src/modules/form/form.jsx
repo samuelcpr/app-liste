@@ -57,6 +57,7 @@ const App = () => {
       <ProductForm addProduct={addProduct} />
 
       {/* Remova a linha <EditLoad /> do seu código */}
+      <h1>Lista de produtos</h1>
       <LoadProductDataForEdit
         products={products}
         deleteProduct={deleteProduct}
