@@ -6,7 +6,7 @@ function Footer() {
   return (
     <div className="App">
       <header className="App-footer">
-        <img src={logo} alt="" />
+        <img src={logo} alt="" id="img1"/>
         <p id="name-footer">
           Feito por samuel-carlos ©
         </p>
