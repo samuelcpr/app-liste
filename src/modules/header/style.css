@@ -90,6 +90,15 @@
   }
   
   @media (max-width: 480px) {
+    .App{
+      height: 1%;
+    }
+
+    .App-header{
+      height: 1%;
+      width: 100%;
+      padding: 0;
+    }
     .App-logo {
       height: 80px;
       width: 80px;
@@ -97,10 +106,19 @@
   
     .App p {
       font-size: 12px;
+      margin: 0 5%;
     }
     .App a {
-        font-size: 12px;
+        font-size: 14px;
+        height: 30px;
+        width: auto;
+        margin-bottom: 6%;
+        border: none;
         
+      }
+
+      .App img{
+        height: 48px;
       }
   }
   

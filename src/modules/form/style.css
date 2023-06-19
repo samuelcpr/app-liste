@@ -124,6 +124,9 @@ button {
   .container {
     padding: 10px;
   }
+  p{
+    font-size: 14px;
+  }
 
   input[type="text"],
   button {
