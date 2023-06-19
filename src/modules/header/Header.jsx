@@ -12,7 +12,7 @@ function Header() {
         </p>
         <a
           className="App-link"
-          href="https://reactjs.org"
+          href="https://github.com/samuelcpr/app-liste"
           target="_blank"
           rel="noopener noreferrer"
         >
