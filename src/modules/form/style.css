@@ -93,7 +93,7 @@ button {
   border: solid 1px;
   border-radius: 5px;
   padding: 5px 5px 5px 5px;
-  margin: 0 12.5% 0 11%;
+  
 }
 
 #item{
@@ -159,7 +159,7 @@ button {
   display: flex;
   justify-content: right;
   padding: 1% 0;
-  margin: -5% 11% 10% 11%;
+ 
 }
 
 #fecharTotal{
@@ -185,9 +185,9 @@ button {
 
 .modal-content{
   position: static;
-  margin: 1% 11% 0 11%;
+  
 }
 
 .mainContainer {
-  padding: 0 23%;
+  padding: 0 29%;
 }
