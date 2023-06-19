@@ -148,7 +148,9 @@ button {
    width: auto;
    font-size: 8px;
   }
-
+h1{
+  font-size: 18px;
+}
   .valorTotal{
     margin-top: 5%;
    font-size: 8px;
