@@ -41,3 +41,19 @@
 #price3 {
     margin: 0 8% 0 10%;
 }
+
+@media (max-width: 600px) {
+
+  .Descricao {
+    width: 80%;
+    display: flex;
+}
+
+.Descricao, h3 {
+    margin-right: 5%;
+    font-size: 13px;
+    padding-bottom: 1%;
+}
+
+
+}
