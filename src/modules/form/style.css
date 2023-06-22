@@ -83,32 +83,34 @@ button {
 .result {
   margin-top: 10px;
   margin-bottom: 5%;
- 
-  
+
+
 }
 
 #itemMain {
- 
+
   display: flex;
-  
+
   align-items: center;
   margin-bottom: 10px;
   border: solid 1px;
   border-radius: 5px;
   padding: 5px 5px 5px 12px;
- 
-  
+
+
 }
 
-#item{
+#item {
   flex-basis: 5%;
   margin-right: 3%;
 }
-#item2{
+
+#item2 {
   flex-basis: 20%;
   margin-right: 3%;
- 
+
 }
+
 #item3 {
   flex-basis: 20%;
   margin-right: 2%;
@@ -125,8 +127,8 @@ button {
   .container {
     padding: 10px;
   }
-  
-  p{
+
+  p {
     font-size: 14px;
   }
 
@@ -139,36 +141,42 @@ button {
     font-size: 14px;
   }
 
-  #itemMain{
+  #itemMain {
     font-size: 12px;
-    
-  } 
-  .mainContainer{
-    margin:0 0 0 -1%;
-    width: 0; 
+
   }
 
-  #fecharTotal{
+  .mainContainer {
+    margin: 0 0 0 -1%;
+    width: 0;
+  }
+
+  #fecharTotal {
     height: auto;
-   width: auto;
-   font-size: 16px;
+    width: auto;
+    font-size: 16px;
+    background-color: red;
+    
   }
-h1{
-  font-size: 18px;
-}
-  .valorTotal{
+
+  h1 {
+    font-size: 18px;
+  }
+
+  .valorTotal {
     margin-top: 5%;
-   font-size: 8px;
+    font-size: 8px;
   }
 
-  #excluir{
+  #excluir {
     height: 30px;
-   width: auto;
-   font-size: 8px;
+    width: auto;
+    font-size: 8px;
 
 
   }
-  #editar{
+
+  #editar {
     font-size: 8px;
     height: 30px;
     width: auto;
@@ -185,26 +193,26 @@ h1{
 }
 
 @media (min-width: 1920px) {
- 
+
   .mainContainer {
     width: 100%;
     display: block;
     justify-content: center;
-      max-width: 800px;
-      padding: 0 3% 1% 3%;
-      border-radius: 5px;
-      margin-top: 8%;
-      margin: 0 29%;
+    max-width: 800px;
+    padding: 0 3% 1% 3%;
+    border-radius: 5px;
+    margin-top: 8%;
+    margin: 0 29%;
   }
 
 }
 
-#editar{
+#editar {
   margin-left: 2%;
   border-radius: 5px;
 }
 
-#excluir{
+#excluir {
   margin-right: 3% 2% 0 2%;
   border-radius: 5px;
   background-color: red;
@@ -213,49 +221,61 @@ h1{
 .valorTotal {
   display: flex;
   justify-content: right;
-  padding: 1% 0;
-  margin-top: -4.9%;
+  padding: 1% 1%;
+  margin-top: -8%;
   margin-bottom: 10%;
- 
+
 }
 
-#fecharTotal{
+#fecharTotal {
   margin: 0 0 -5% 0;
+  background-color: red;
 }
 
 
-#p0  {
+#p0 {
   flex-basis: 26%;
   margin-right: 5px;
- 
+
 }
 
-#p1{
+#p1 {
   flex-basis: 17%;
   margin-right: 5px;
 }
 
-#p2{
+#p2 {
   flex-basis: 17%;
   margin-right: 5px;
 }
 
-.modal-content{
+.modal-content {
   position: static;
-  
+  position: static;
+  border: solid 1px;
+  padding: 3%;
+  border-radius: 5px;
+  background-color: #F2F2F2;
 }
+
+
 
 .mainContainer {
   width: 100%;
   display: block;
   justify-content: center;
-    max-width: 800px;
-    padding: 0 3% 1% 3%;
-    border-radius: 5px;
-    margin-top: 8%;
+  max-width: 800px;
+  padding: 0 3% 1% 3%;
+  border-radius: 5px;
+  margin-top: 8%;
 }
 
 #itemx {
   margin: 1%;
   width: 23%;
+}
+
+.Container-valor {
+  margin-top: 10%;
+  width: 102%;
 }

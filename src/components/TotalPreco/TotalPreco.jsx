@@ -20,7 +20,7 @@ const ValorTotal = ({ products, showBottomModal, setShowBottomModal }) => {
   };
 
   return (
-    <div>
+    <div className="Container-valor">
       {showBottomModal && (
         <div className="modal">
           <div className="modal-content">
