@@ -62,7 +62,7 @@ const App = () => {
         products={products}
         deleteProduct={deleteProduct}
         editProduct={editProduct}
-      />
+        />
       <ValorTotal
         products={products}
         showBottomModal={showBottomModal}

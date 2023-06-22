@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { doc, updateDoc } from "firebase/firestore";
 import { firestore } from "../../modules/form/form";
 import "./atualize.css"
+import CurrencyFormat from "react-currency-format";
 
 const LoadProductDataForEdit = ({ products, deleteProduct, editProduct }) => {
   const [editProductId, setEditProductId] = useState(null);
@@ -43,6 +44,11 @@ const LoadProductDataForEdit = ({ products, deleteProduct, editProduct }) => {
 
   return (
     <div className="result">
+       <div className="Descricao">
+              <h3 id="price1">Nome</h3>
+              <h3 id="price2">Preço</h3>
+              <h3 id="price3">Tipo</h3>
+            </div>
       {products && products.map((product) => (
         <li key={product.id} id="itemMain">
           {/* <a id="item">{product.id}</a> */}
@@ -74,7 +80,15 @@ const LoadProductDataForEdit = ({ products, deleteProduct, editProduct }) => {
           ) : (
             <>
               <a id="item2">{product.name}</a>
-              <a id="item2">{product.price}</a>
+              <CurrencyFormat
+                id="item2"
+                value={product.price}
+                displayType="text"
+                thousandSeparator="."
+                decimalSeparator=","
+                prefix="R$"
+                renderText={(formattedValue) => <a id="item2">{formattedValue}</a>}
+              />
               <a id="item3">{product.type}</a>
               <div className="excluirMain">
                 <button onClick={() => deleteProduct(product.id)} id="excluir">

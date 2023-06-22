@@ -95,7 +95,7 @@ button {
   margin-bottom: 10px;
   border: solid 1px;
   border-radius: 5px;
-  padding: 5px 5px 5px 5px;
+  padding: 5px 5px 5px 12px;
  
   
 }
@@ -106,7 +106,8 @@ button {
 }
 #item2{
   flex-basis: 20%;
-  margin-right: 2%;
+  margin-right: 3%;
+ 
 }
 #item3 {
   flex-basis: 20%;
@@ -124,9 +125,7 @@ button {
   .container {
     padding: 10px;
   }
-  #itemx{
-
-  }
+  
   p{
     font-size: 14px;
   }
