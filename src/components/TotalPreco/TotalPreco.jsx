@@ -25,7 +25,7 @@ const ValorTotal = ({ products, showBottomModal, setShowBottomModal }) => {
         <div className="modal">
           <div className="modal-content">
             <h2>Valor Total</h2>
-            <p>Total: R${calcularTotal()}</p>
+            <p>Total: R${calcularTotal()},00</p>
             <button onClick={() => setShowBottomModal(false)} id="fecharTotal">
               Fechar
             </button>
