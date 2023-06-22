@@ -190,6 +190,13 @@ button {
     margin-bottom: 5px;
     flex: 3;
   }
+
+  #botaoTotal{
+    margin-top: 10%;
+  }
+  .modal-content {
+    height: 10rem;
+  }
 }
 
 @media (min-width: 1920px) {
