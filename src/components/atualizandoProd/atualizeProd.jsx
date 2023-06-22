@@ -114,7 +114,7 @@ const LoadProductDataForEdit = ({ products, deleteProduct, editProduct }) => {
                   thousandSeparator="."
                   decimalSeparator=","
                   prefix="R$"
-                  renderText={(formattedValue) => <a id="item2">{formattedValue}</a>}
+                  renderText={(formattedValue) => <a id="item2" className="price-item">{formattedValue}</a>}
                 />
                 <a id="item3">{product.type}</a>
                 <div className="excluirMain">

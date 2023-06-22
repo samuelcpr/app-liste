@@ -53,7 +53,7 @@ const ProductForm = ({ addProduct }) => {
       <form onSubmit={handleSubmit}>
         <div className="input">
           <label>Nome:</label>
-          <input type="text" value={name} onChange={handleNameChange} />
+          <input type="text" value={name}  onChange={handleNameChange} />
         </div>
         <div className="input">
           <label>Preço:</label>

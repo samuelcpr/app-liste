@@ -108,7 +108,13 @@ button {
 #item2 {
   flex-basis: 20%;
   margin-right: 3%;
+  
 
+}
+
+.price-item{
+  color: green;
+  font-weight: 700;
 }
 
 #item3 {
