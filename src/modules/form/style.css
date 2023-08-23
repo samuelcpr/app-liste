@@ -108,11 +108,11 @@ button {
 #item2 {
   flex-basis: 20%;
   margin-right: 3%;
-  
+
 
 }
 
-.price-item{
+.price-item {
   color: green;
   font-weight: 700;
 }
@@ -151,6 +151,7 @@ button {
     font-size: 12px;
 
   }
+  
 
   .mainContainer {
     margin: 0 0 0 -1%;
@@ -162,7 +163,7 @@ button {
     width: auto;
     font-size: 16px;
     background-color: red;
-    
+
   }
 
   h1 {
@@ -197,9 +198,10 @@ button {
     flex: 3;
   }
 
-  #botaoTotal{
+  #botaoTotal {
     margin-top: 10%;
   }
+
   .modal-content {
     height: 10rem;
   }
@@ -280,8 +282,9 @@ button {
   max-width: 800px;
   padding: 0 3% 1% 3%;
   border-radius: 5px;
-  margin-top: 8%;
+  margin: 0 0 8% 25%;
 }
+
 
 #itemx {
   margin: 1%;
